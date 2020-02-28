@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="66n-30-Slc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3ko-cX-lq0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,37 +23,33 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contest" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obF-ug-fAJ">
-                                            <rect key="frame" x="20" y="0.0" width="264" height="35"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contest" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obF-ug-fAJ">
+                                            <rect key="frame" x="7" y="1" width="209" height="99"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Party" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pk-E1-hDq">
-                                            <rect key="frame" x="20" y="37" width="264" height="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Party" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pk-E1-hDq">
+                                            <rect key="frame" x="193" y="2" width="125" height="46"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                            <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f1m-IS-nfl">
-                                            <rect key="frame" x="308" y="7" width="86" height="86"/>
+                                            <rect key="frame" x="326" y="16" width="68" height="68"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ballotTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoW-yp-opJ">
-                                            <rect key="frame" x="20" y="68" width="264" height="21"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RV2-rS-0Wd">
+                                            <rect key="frame" x="224" y="47" width="64" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="ballotTitleLabel" destination="aoW-yp-opJ" id="kSh-e3-k13"/>
                                     <outlet property="contestLabel" destination="obF-ug-fAJ" id="QkG-py-mHm"/>
-                                    <outlet property="partyLabel" destination="2pk-E1-hDq" id="eGx-u7-TRu"/>
+                                    <outlet property="partyLogo" destination="RV2-rS-0Wd" id="VzN-P6-fq9"/>
                                     <outlet property="scopeLabel" destination="2pk-E1-hDq" id="Gh9-zN-2oq"/>
                                     <outlet property="sealImage" destination="f1m-IS-nfl" id="dh9-qo-gsn"/>
                                     <segue destination="6GA-nC-Sn7" kind="show" id="GkD-kF-2im"/>
@@ -79,13 +76,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ZYf-dw-GPh">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="candidate" rowHeight="100" id="ZYf-dw-GPh" customClass="candidatesTableViewCell" customModule="election_app" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZYf-dw-GPh" id="6q9-0S-V5X">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Candidate" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-0Y-33Y">
+                                            <rect key="frame" x="20" y="8" width="298" height="43"/>
+                                            <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Political Party " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpT-xW-GCT">
+                                            <rect key="frame" x="20" y="58" width="163.5" height="17"/>
+                                            <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ap-By-HZt">
+                                            <rect key="frame" x="197" y="49" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="rpT-xW-GCT" secondAttribute="bottom" constant="25" id="R52-jZ-aYm"/>
+                                        <constraint firstItem="rpT-xW-GCT" firstAttribute="leading" secondItem="6q9-0S-V5X" secondAttribute="leading" constant="20" id="Rac-8o-GMr"/>
+                                        <constraint firstItem="hFi-0Y-33Y" firstAttribute="leading" secondItem="6q9-0S-V5X" secondAttribute="leading" constant="20" id="fa3-Td-9i0"/>
+                                        <constraint firstItem="hFi-0Y-33Y" firstAttribute="top" secondItem="6q9-0S-V5X" secondAttribute="top" constant="8" id="wIz-xF-afD"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="candidateLabel" destination="hFi-0Y-33Y" id="2xd-Y9-CcU"/>
+                                    <outlet property="partyLabel" destination="rpT-xW-GCT" id="6qg-XA-qHA"/>
+                                    <outlet property="partyLogo" destination="5ap-By-HZt" id="swH-H2-KTa"/>
+                                    <segue destination="2mN-qO-Xnf" kind="show" id="N7d-wH-UXj"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -93,16 +120,64 @@
                             <outlet property="delegate" destination="6GA-nC-Sn7" id="AbQ-pm-AQb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="684-sT-KKI"/>
+                    <navigationItem key="navigationItem" title="Candidates Running" id="Scu-9b-HmS"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlx-xh-XBk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="-565"/>
+            <point key="canvasLocation" x="1469.5652173913045" y="-565.17857142857144"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--View Controller-->
+        <scene sceneID="1Cf-B9-Vs8">
+            <objects>
+                <viewController id="2mN-qO-Xnf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cV9-SI-mfe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rvd-Db-Tnm">
+                                <rect key="frame" x="57" y="147" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Candidate" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsr-9J-OJt">
+                                <rect key="frame" x="57" y="453" width="300" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="KO7-Ek-4uV"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fxj-w2-ZqE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KhZ-gh-hc8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2181.1594202898555" y="-567.1875"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="pqF-Mi-MSe">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EHE-RC-Own" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tabBarController id="3ko-cX-lq0" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ubT-EI-BbU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="66n-30-Slc" kind="relationship" relationship="viewControllers" id="kB7-eY-S1H"/>
+                        <segue destination="SNq-Rp-PCE" kind="relationship" relationship="viewControllers" id="aBQ-wm-bIR"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="-1516" y="121"/>
+        </scene>
+        <!--Upcoming Elections-->
         <scene sceneID="GDx-1M-jh5">
             <objects>
                 <navigationController id="66n-30-Slc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Upcoming Elections" id="ub5-md-Mim"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jkV-Jp-Fan">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -114,6 +189,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cai-eW-Xpz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-322" y="-565"/>
+        </scene>
+        <!--Voting Locations-->
+        <scene sceneID="pbc-n4-be1">
+            <objects>
+                <tableViewController id="WfL-sf-Bbu" customClass="locationsTableViewController" customModule="election_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aIA-mC-L1N">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locations" rowHeight="100" id="18Z-Yj-o2n" customClass="locationsTableViewCell" customModule="election_app" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="18Z-Yj-o2n" id="lVU-yi-tXO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location Name" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8D-sf-3al">
+                                            <rect key="frame" x="20" y="11" width="304" height="36"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="locationName" destination="M8D-sf-3al" id="PT1-9z-DS4"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="WfL-sf-Bbu" id="aXS-Mh-3Pv"/>
+                            <outlet property="delegate" destination="WfL-sf-Bbu" id="HEB-P7-g4A"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Voting Locations" id="yVe-Sn-KOj"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5a-sp-kQS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="547.82608695652175" y="491.51785714285711"/>
+        </scene>
+        <!--Voting Locations-->
+        <scene sceneID="Znt-2g-ZT0">
+            <objects>
+                <navigationController id="SNq-Rp-PCE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Voting Locations" id="dC1-Ok-PEA"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="voj-9p-Zey">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="WfL-sf-Bbu" kind="relationship" relationship="rootViewController" id="R5g-Zu-Ed9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TRe-g2-Ysy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-323" y="492"/>
         </scene>
     </scenes>
 </document>

@@ -9,11 +9,12 @@
 import UIKit
 
 class electionTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var scopeLabel: UILabel!
     @IBOutlet weak var contestLabel: UILabel!
     @IBOutlet weak var sealImage: UIImageView!
-    @IBOutlet weak var ballotTitleLabel: UILabel!
+    @IBOutlet weak var ballotLabel: UILabel!
+    @IBOutlet weak var partyLogo: UIImageView!
     
     struct source: Codable{
         var name:String?
@@ -22,7 +23,7 @@ class electionTableViewCell: UITableViewCell {
     
     struct district: Codable{
         var name:String?
-        var scope:String?
+        var scope:String
         var id:String?
     }
     
@@ -48,11 +49,11 @@ class electionTableViewCell: UITableViewCell {
         var primaryParty:String?
         var electorateSpecifications:String?
         var special:String?
-        var ballotTitle:String
+        var ballotTitle:String!
         var office:String?
         var level:[String]?
         var roles:[String]?
-        var district:district?
+        var district:district
         var numberElected:String?
         var numberVotingFor:String?
         var ballotPlacement:String?
@@ -111,7 +112,7 @@ class electionsTableViewController: UITableViewController {
     
     struct district: Codable{
         var name:String?
-        var scope:String?
+        var scope:String
         var id:String?
     }
     
@@ -157,7 +158,6 @@ class electionsTableViewController: UITableViewController {
         var referendumEffectOfAbstain:String?
         var referendumBallotResponses:[String]?
         var sources:[source]?
-        
     }
     
     struct location: Codable {
@@ -218,14 +218,10 @@ class electionsTableViewController: UITableViewController {
         var pollingLocations:[location]?
         var earlyVoteSites:[location]?
         var dropOffLocations:[location]?
-        var contests:[contest]?
+        var contests:[contest]
         var state:[state]?
         var mailOnly:Bool?
     }
-    
-    var seals = ["president", "senate", "house", "county", "state"]
-    var sealImages = [UIImage(named: "president"), UIImage(named: "senate"), UIImage(named: "house"), UIImage(named: "county"), UIImage(named: "state")]
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -275,12 +271,7 @@ class electionsTableViewController: UITableViewController {
                     // decode the JSON into our array of todoItem's
                     let all_civic_data = try decoder.decode(civic_data.self, from: jsonData)
                     
-                    for c in all_civic_data.contests ?? []{
-                        for can in c.candidates ?? []{
-                            if(can.party == nil){
-                                //can.party = "INDEPENDENT"
-                            }
-                        }
+                    for c in all_civic_data.contests{
                         self.contestsG.append(c)
                     }
                     
@@ -311,151 +302,187 @@ class electionsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contest", for: indexPath) as! electionTableViewCell
+        
+        //Change cell colors
+        if(indexPath.row % 2 == 0){
+            cell.backgroundColor = UIColor.init(displayP3Red: 0.91, green: 0.91, blue: 0.91, alpha: 1.0)
+        } else{
+            cell.backgroundColor = UIColor.init(displayP3Red: 0.74, green: 0.71, blue: 0.75, alpha: 1.0)
+        }
 
         // Configure the cell...
-        
-        //cell.contestLabel.text = contestsG[indexPath.row].ballotTitle.lowercased()
-        //cell.scopeLabel.text = contestsG[indexPath.row].district.scope
-        
         var tempParty:String = contestsG[indexPath.row].candidates![0].party ?? ""
         var tempBallotTitle:String = contestsG[indexPath.row].ballotTitle.lowercased()
         var tempBallotTitleArr:[String] = tempBallotTitle.components(separatedBy: " ")
-        print(tempBallotTitleArr)
-        let USstates = [ "AK",
-        "AL",
-        "AR",
-        "AS",
-        "AZ",
-        "CA",
-        "CO",
-        "CT",
-        "DC",
-        "DE",
-        "FL",
-        "GA",
-        "GU",
-        "HI",
-        "IA",
-        "ID",
-        "IL",
-        "IN",
-        "KS",
-        "KY",
-        "LA",
-        "MA",
-        "MD",
-        "ME",
-        "MI",
-        "MN",
-        "MO",
-        "MS",
-        "MT",
-        "NC",
-        "ND",
-        "NE",
-        "NH",
-        "NJ",
-        "NM",
-        "NV",
-        "NY",
-        "OH",
-        "OK",
-        "OR",
-        "PA",
-        "PR",
-        "RI",
-        "SC",
-        "SD",
-        "TN",
-        "TX",
-        "UT",
-        "VA",
-        "VI",
-        "VT",
-        "WA",
-        "WI",
-        "WV",
-        "WY"]
         
+        let USstates = [ "ak",
+        "al",
+        "ar",
+        "as",
+        "az",
+        "ca",
+        "co",
+        "ct",
+        "dc",
+        "de",
+        "fl",
+        "ga",
+        "gu",
+        "hi",
+        "ia",
+        "id",
+        "il",
+        "in",
+        "ks",
+        "ky",
+        "la",
+        "ma",
+        "md",
+        "me",
+        "mi",
+        "mn",
+        "mo",
+        "ms",
+        "mt",
+        "nc",
+        "nd",
+        "ne",
+        "nh",
+        "nj",
+        "nm",
+        "nv",
+        "ny",
+        "oh",
+        "ok",
+        "or",
+        "pa",
+        "pr",
+        "ri",
+        "sc",
+        "sd",
+        "tn",
+        "tx",
+        "ut",
+        "va",
+        "vi",
+        "vt",
+        "wa",
+        "wi",
+        "wv",
+        "wy"]
+
+
         //set correct ballot title to display
         if(tempBallotTitle.contains("presidential")){
-            cell.contestLabel.text = "Presidential Primary"
+           cell.contestLabel.text = "Presidential Primary"
         }
         else if(tempBallotTitle.contains("us senate")){
-            cell.contestLabel.text = "US Senate"
+           cell.contestLabel.text = "US Senate"
         }
         else if(tempBallotTitle.contains("house of representatives")){
-            cell.contestLabel.text = "US House of Representatives"
+           cell.contestLabel.text = "US House of Representatives"
         }
         else if(tempBallotTitle.contains("governor") && !tempBallotTitle.contains("lieutenant")){
-            cell.contestLabel.text = "Governor"
+           cell.contestLabel.text = "Governor"
         }
         else if(tempBallotTitle.contains("lieutenant governor")){
-            cell.contestLabel.text = "Lieutenant Governor"
+           cell.contestLabel.text = "Lieutenant Governor"
         }
-       else if(USstates.contains(tempBallotTitleArr[0])){
+        else if(tempBallotTitle.contains("attorney general")){
+           cell.contestLabel.text = "Attorney General"
+        }
+        else if(tempBallotTitle.contains("auditor")){
+           cell.contestLabel.text = "Auditor"
+        }
+        else if(tempBallotTitle.contains("treasurer")){
+           cell.contestLabel.text = "Treasurer"
+        }
+        else if(tempBallotTitle.contains("agriculture")){
+           cell.contestLabel.text = "Commissioner of Agriculture"
+        }
+        else if(tempBallotTitle.contains("labor")){
+           cell.contestLabel.text = "Commissioner of Labor"
+        }
+        else if(tempBallotTitle.contains("insurance")){
+           cell.contestLabel.text = "Commissioner of Insurance"
+        }
+        else if(tempBallotTitle.contains("superintendent")){
+           cell.contestLabel.text = "Superintendent of Public Instruction"
+        }
+        else if(tempBallotTitle.contains("secretary of state")){
+           cell.contestLabel.text = "Secretart of State"
+        }
+        else if(tempBallotTitle.contains("board of education") && tempBallotTitle.contains("at-large")){
+           cell.contestLabel.text = "Board of Education At-Large"
+        }
+        else if(tempBallotTitle.contains("board of education") && tempBallotTitle.contains("district")){
+           cell.contestLabel.text = "Board of Education District"
+        }
+        else if(tempBallotTitle.contains("board of commissioners")){
+           cell.contestLabel.text = "Board of Commissioners"
+        }
+        else if(USstates.contains(tempBallotTitleArr[0]) && tempBallotTitleArr[2] == "senate"){
+            cell.contestLabel.text = "State Senate"
+        }
+        else if(USstates.contains(tempBallotTitleArr[0])){
             cell.contestLabel.text = tempBallotTitleArr.dropFirst().joined(separator: " ")
-      }
+        }
+        else if(tempBallotTitleArr[1] == "county"){
+            cell.contestLabel.text = tempBallotTitleArr.dropFirst(2).joined(separator: " ")
+        }
         
-        cell.ballotTitleLabel.text = contestsG[indexPath.row].ballotTitle
-            
-            
-            /*
-        else if(tempBallotTitle.contains("agriculture")){
-            cell.contestLabel.text = "Commissioner of Agriculture"
-        }
-        else if(tempBallotTitle.contains("comissioner")){
-            cell.contestLabel.text = split(tempBallotTitle)
-        }
-        else if(tempBallotTitle.contains("agriculture")){
-            cell.contestLabel.text = "Commissioner of Agriculture"
-        }
-        else if(tempBallotTitle.contains("agriculture")){
-            cell.contestLabel.text = "Commissioner of Agriculture"
-        }
- */
-            
-            
         
+
+        //cell.ballotTitleLabel.text = contestsG[indexPath.row].ballotTitle
+           
+           
+
         //set correct party to display
         if(tempParty.contains("GREEN")){
-            cell.scopeLabel.text = "Green Party".lowercased()
+           cell.scopeLabel.text = "Green           Party"
+            cell.partyLogo.image = UIImage(named: "green")
+            //cell.scopeLabel.textColor = "#fc0a"
         }
         else if(tempParty.contains("LIBERTARIAN")){
-            cell.scopeLabel.text = "Libertarian Party".lowercased()
+           cell.scopeLabel.text = "Libertarian Party"
+            cell.partyLogo.image = UIImage(named: "libertarian")
         }
         else if(tempParty.contains("REPUBLICAN")){
-            cell.scopeLabel.text = "Republican Party".lowercased()
+           cell.scopeLabel.text = "Republican Party"
+            cell.partyLogo.image = UIImage(named: "republican")
         }
         else if(tempParty.contains("DEMOCRAT")){
-            cell.scopeLabel.text = "Democratic Party".lowercased()
+           cell.scopeLabel.text = "Democratic Party"
+            cell.partyLogo.image = UIImage(named: "democratic")
         }
         else if(tempParty.contains("CONSTITUTION")){
-            cell.scopeLabel.text = "Constitution Party".lowercased()
+           cell.scopeLabel.text = "Constitution Party"
+            cell.partyLogo.image = UIImage(named: "constitution")
         }
         else{
-            cell.scopeLabel.text = "General Election".lowercased()
+           cell.scopeLabel.text = "General Election"
+            cell.partyLogo.image = UIImage(named: "flag")
         }
-    
-        //set correct seals to display 
+
+        //set correct seals to display
         if(contestsG[indexPath.row].ballotTitle.contains("PRESIDENTIAL")) {
-            cell.sealImage.image = UIImage(named: "president")
+           cell.sealImage.image = UIImage(named: "president")
         }
         else if(contestsG[indexPath.row].ballotTitle.contains("US SENATE")){
-            cell.sealImage.image = UIImage(named: "senate")
+           cell.sealImage.image = UIImage(named: "senate")
         }
         else if(contestsG[indexPath.row].ballotTitle.contains("REPRESENTATIVES")){
-            cell.sealImage.image = UIImage(named: "house")
+           cell.sealImage.image = UIImage(named: "house")
         }
         else if(contestsG[indexPath.row].ballotTitle.contains("COUNTY")){
-            cell.sealImage.image = UIImage(named: "county")
+           cell.sealImage.image = UIImage(named: "county")
         }
         else{
-            cell.sealImage.image = UIImage(named: "state")
+           cell.sealImage.image = UIImage(named: "state")
         }
-        
+
         return cell
-    }
+        }
 
 
     /*
@@ -493,7 +520,7 @@ class electionsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -506,10 +533,12 @@ class electionsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         let myRow = tableView!.indexPathForSelectedRow
         let myCurrCell = tableView!.cellForRow(at: myRow!) as! electionTableViewCell
+//        print(myRow!.row)
         
-        //destVC.allCandidates = contestsG[indexPath.row].candidates
-        
+        //This code uses variables that aren't precisely accurate.\
+        //myRow is a tuple of myRow.section being the section # and myRow.row being the row number Therefore, you must index the row number as a reference to the index of the elements in the list you want to youse. A better name for myRow could be indexPath. It doesnt really matter as long as you understand what is going on. 
+        destVC.allCandidates = contestsG[myRow!.row].candidates!
     }
-    */
+    
 
 }

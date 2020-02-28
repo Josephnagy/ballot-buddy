@@ -9,6 +9,11 @@
 import UIKit
 
 class candidatesTableViewCell: UITableViewCell {
+    //variables
+    
+    @IBOutlet weak var partyLogo: UIImageView!
+    @IBOutlet weak var candidateLabel: UILabel!
+    @IBOutlet weak var partyLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +29,6 @@ class candidatesTableViewCell: UITableViewCell {
 }
 
 class candidatesTableViewController: UITableViewController {
-    
     //structs for data
     
     struct elections_resource: Codable {
@@ -33,7 +37,7 @@ class candidatesTableViewController: UITableViewController {
         var electionDay:String?
         var ocdDivisionId:String?
     }
-    
+
     struct address: Codable {
         var locationName:String?
         var line1:String?
@@ -43,17 +47,17 @@ class candidatesTableViewController: UITableViewController {
         var state:String?
         var zip:String?
     }
-    
+
     struct source: Codable{
         var name:String?
         var official:Bool?
     }
-    
+
     struct district: Codable{
         var name:String?
         var scope:String
         var id:String?
-        
+
         /*
         init() {
             var name = ""
@@ -62,7 +66,7 @@ class candidatesTableViewController: UITableViewController {
         }
  */
     }
-    
+
     struct channel: Codable{
         var type:String?
         var id:String?
@@ -71,7 +75,7 @@ class candidatesTableViewController: UITableViewController {
             id = ""
         }
     }
-    
+
     struct candidate: Codable {
         var name:String?
         var party:String?
@@ -92,7 +96,7 @@ class candidatesTableViewController: UITableViewController {
             channels = [channel()]
         }
     }
-    
+
     struct contest: Codable {
         var id:String?
         var type:String?
@@ -148,9 +152,9 @@ class candidatesTableViewController: UITableViewController {
             sources:[source]?
         }
     */
-        
+
     }
-    
+
     struct location: Codable {
         var id:String?
         var address:address?
@@ -162,7 +166,7 @@ class candidatesTableViewController: UITableViewController {
         var endDate:String?
         var sources:[source]?
     }
-    
+
     struct electionOfficial: Codable {
         var name:String?
         var title:String?
@@ -170,7 +174,7 @@ class candidatesTableViewController: UITableViewController {
         var faxNumber:String?
         var emailAddress:String?
     }
-    
+
     struct electionAdministrationBody: Codable{
         var name:String?
         var electionInfoUrl:String?
@@ -186,13 +190,13 @@ class candidatesTableViewController: UITableViewController {
         var physicalAddress:address?
         var electionOfficials:[electionOfficial]?
     }
-    
+
     struct administration_region: Codable {
         var name:String?
         var electionAdministrationBody:electionAdministrationBody?
         var sources:[source]?
     }
-    
+
     struct state: Codable {
         var id:String?
         var name:String?
@@ -200,7 +204,7 @@ class candidatesTableViewController: UITableViewController {
         var local_jurisdiction:administration_region?
         var sources:[source]?
     }
-    
+
     struct civic_data: Codable {
         var kind:String?
         var election:elections_resource?
@@ -214,13 +218,18 @@ class candidatesTableViewController: UITableViewController {
         var mailOnly:Bool?
     }
     
-    //var thisContest:contest
-    var allCandidates = [candidate()]
+    //Candidate struct: reference it from electroionsTV Class
+    var allCandidates = [electionsTableViewController.candidate]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Candidates"
+        tableView.rowHeight = 100
+        
+        //Testing to see if segue works (it does) - delete later
+//        for candidate in allCandidates{
+//            print(candidate.name)
+//        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -233,23 +242,60 @@ class candidatesTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return allCandidates.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "candidate", for: indexPath) as! candidatesTableViewCell
+        
+        var tempParty:String = allCandidates[indexPath.row].party!
+        
+        //Change cell colors
+        if(indexPath.row % 2 == 0){
+            cell.backgroundColor = UIColor.init(displayP3Red: 0.91, green: 0.91, blue: 0.91, alpha: 1.0)
+        } else{
+            cell.backgroundColor = UIColor.init(displayP3Red: 0.74, green: 0.71, blue: 0.75, alpha: 1.0)
+        }
+        
+        cell.candidateLabel.text = allCandidates[indexPath.row].name
+        
+        if(tempParty.contains("GREEN")){
+           cell.partyLabel.text = "Green Party"
+            cell.partyLogo.image = UIImage(named: "green")
+        }
+        else if(tempParty.contains("LIBERTARIAN")){
+           cell.partyLabel.text = "Libertarian Party"
+            cell.partyLogo.image = UIImage(named: "libertarian")
+        }
+        else if(tempParty.contains("REPUBLICAN")){
+           cell.partyLabel.text = "Republican Party"
+            cell.partyLogo.image = UIImage(named: "republican")
+        }
+        else if(tempParty.contains("DEMOCRAT")){
+           cell.partyLabel.text = "Democratic Party"
+            cell.partyLogo.image = UIImage(named: "democratic")
+        }
+        else if(tempParty.contains("CONSTITUTION")){
+           cell.partyLabel.text = "Constitution Party"
+            cell.partyLogo.image = UIImage(named: "constitution")
+        }
+        else{
+           cell.partyLabel.text = "General Election"
+            cell.partyLogo.image = UIImage(named: "flag")
+        }
+        cell.partyLabel.text = allCandidates[indexPath.row].party
+        
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
