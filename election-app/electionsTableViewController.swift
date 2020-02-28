@@ -439,7 +439,7 @@ class electionsTableViewController: UITableViewController {
 
         //set correct party to display
         if(tempParty.contains("GREEN")){
-           cell.scopeLabel.text = "Green           Party"
+           cell.scopeLabel.text = "Green Party"
             cell.partyLogo.image = UIImage(named: "green")
             //cell.scopeLabel.textColor = "#fc0a"
         }

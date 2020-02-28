@@ -33,7 +33,7 @@ class locationsTableViewController: UITableViewController {
        }
        
        struct address: Codable {
-           var locationName:String
+           var locationName:String!
            var line1:String?
            var line2:String?
            var line3:String?
