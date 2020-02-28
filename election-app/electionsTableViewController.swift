@@ -307,7 +307,7 @@ class electionsTableViewController: UITableViewController {
         if(indexPath.row % 2 == 0){
             cell.backgroundColor = UIColor.init(displayP3Red: 0.91, green: 0.91, blue: 0.91, alpha: 1.0)
         } else{
-            cell.backgroundColor = UIColor.init(displayP3Red: 0.74, green: 0.71, blue: 0.75, alpha: 1.0)
+            cell.backgroundColor = UIColor.init(displayP3Red: 0.91, green: 0.91, blue: 0.91, alpha: 0.50)
         }
 
         // Configure the cell...
@@ -315,61 +315,9 @@ class electionsTableViewController: UITableViewController {
         var tempBallotTitle:String = contestsG[indexPath.row].ballotTitle.lowercased()
         var tempBallotTitleArr:[String] = tempBallotTitle.components(separatedBy: " ")
         
-        let USstates = [ "ak",
-        "al",
-        "ar",
-        "as",
-        "az",
-        "ca",
-        "co",
-        "ct",
-        "dc",
-        "de",
-        "fl",
-        "ga",
-        "gu",
-        "hi",
-        "ia",
-        "id",
-        "il",
-        "in",
-        "ks",
-        "ky",
-        "la",
-        "ma",
-        "md",
-        "me",
-        "mi",
-        "mn",
-        "mo",
-        "ms",
-        "mt",
-        "nc",
-        "nd",
-        "ne",
-        "nh",
-        "nj",
-        "nm",
-        "nv",
-        "ny",
-        "oh",
-        "ok",
-        "or",
-        "pa",
-        "pr",
-        "ri",
-        "sc",
-        "sd",
-        "tn",
-        "tx",
-        "ut",
-        "va",
-        "vi",
-        "vt",
-        "wa",
-        "wi",
-        "wv",
-        "wy"]
+        let USstates = [ "ak","al","ar","as","az","ca","co","ct","dc","de","fl","ga","gu","hi","ia","id","il","in",
+"ks","ky","la","ma","md","me","mi","mn","mo","ms","mt","nc","nd","ne","nh","nj","nm","nv","ny","oh","ok","or","pa",
+"pr","ri","sc","sd","tn","tx","ut","va","vi","vt","wa","wi","wv","wy"]
 
 
         //set correct ballot title to display
@@ -430,11 +378,6 @@ class electionsTableViewController: UITableViewController {
         else if(tempBallotTitleArr[1] == "county"){
             cell.contestLabel.text = tempBallotTitleArr.dropFirst(2).joined(separator: " ")
         }
-        
-        
-
-        //cell.ballotTitleLabel.text = contestsG[indexPath.row].ballotTitle
-           
            
 
         //set correct party to display

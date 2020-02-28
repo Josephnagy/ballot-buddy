@@ -10,6 +10,9 @@ import UIKit
 
 class locationsTableViewCell: UITableViewCell {
     @IBOutlet weak var locationName: UILabel!
+    @IBOutlet weak var startDateLabel: UILabel!
+    @IBOutlet weak var endDateLabel: UILabel!
+    @IBOutlet weak var pollingHoursLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -165,6 +168,8 @@ class locationsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.rowHeight = 100
+        
         getAllData()
 
         // Uncomment the following line to preserve selection between presentations
@@ -242,14 +247,38 @@ class locationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "location", for: indexPath) as! locationsTableViewCell
+        
+        var months = ["01": "January","02": "February","03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September","10":"October", "11":"November", "12":"December"]
+        var singleDates = ["01": "1","02": "2","03": "3", "04": "4", "05": "5", "06": "6", "07": "7", "08": "8", "09": "9"]
+        
+        //Change cell colors
+        if(indexPath.row % 2 == 0){
+            cell.backgroundColor = UIColor.init(displayP3Red: 0.91, green: 0.91, blue: 0.91, alpha: 1.0)
+        } else{
+            cell.backgroundColor = UIColor.init(displayP3Red: 0.91, green: 0.91, blue: 0.91, alpha: 0.50)
+        }
 
         // Configure the cell...
         if(locationsG[indexPath.row].address?.locationName == nil){
             cell.locationName.text = "No Name"
         }
-        else{
-            cell.locationName.text = locationsG[indexPath.row].address!.locationName
+        else if(locationsG[indexPath.row].address!.locationName.contains("NCCU")){
+            cell.locationName.text = "NCCU School of Law"
         }
+        else{
+            cell.locationName.text = locationsG[indexPath.row].address!.locationName.capitalized
+        }
+        
+        //format start/end dates
+        var startDateArr = locationsG[indexPath.row].startDate!.components(separatedBy: "-")
+        var endDateArr = locationsG[indexPath.row].endDate!.components(separatedBy: "-")
+        cell.startDateLabel.text = "\(months[startDateArr[1]]!) \(startDateArr[2]) \(startDateArr[0])"
+        cell.endDateLabel.text = "\(months[endDateArr[1]]!) \(endDateArr[2]) \(endDateArr[0])"
+        
+        
+        
+        
+        
 
         return cell
     }
